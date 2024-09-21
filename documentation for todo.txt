@@ -1,0 +1,52 @@
+javascript functioning knowledge
+
+1.Get the Task from Input:
+
+- The function starts by retrieving the value entered in the text input field (where the user types the task) and stores it in the task variable.
+It also removes any extra spaces before and after the task (using trim()).
+
+2.Check if Task is Empty:
+
+- If the user hasn't typed anything (the input is empty), it displays an alert message (Please enter a task) and stops the function from continuing.
+
+3.Create a New Task Item:
+
+- A new div element is created (taskItem) to represent the entire task. This is like a container for the task text and buttons.
+The getTaskClass(task) function is called to assign a specific style class (e.g., for urgent, completed, or normal tasks) based on the content of the task.
+
+4.Create the Task Text:
+
+- A span element is created to hold the actual task text that the user entered.
+The taskText gets the text of the task (what the user typed in) and is then added to the task item.
+
+5.Create Edit Button:
+
+- A button labeled "Edit" is created (editButton).
+When the user clicks this button, the edit_task(taskText) function is called, which allows the user to edit the task.
+
+6.Create Delete Button:
+
+- A button labeled "Delete" is also created (deleteButton).
+When the user clicks this button, the delete_task(taskItem) function is called, which removes the task from the list.
+
+7.Add Everything to the Task Item:
+
+- The task text (taskText), the "Edit" button, and the "Delete" button are added (appended) inside the task item (taskItem).
+
+8. Display the Task:
+
+- The newly created task item is added to the task-list1 element (which is a container for all the tasks).
+9.Clear the Input Field:
+
+-After adding the task, the input field is cleared so the user can type a new task.
+
+Summary:
+This function creates a new task with an "Edit" and "Delete" button and displays it in the task list. 
+The user can edit the task by clicking "Edit" or remove the task by clicking "Delete." 
+After submitting a task, the input field is cleared to prepare for the next task.
+
+
+
+
+
+

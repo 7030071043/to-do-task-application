@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List Application</title>
+    <link rel="stylesheet" href="design.css">
+    <script>
+function submit_task() {
+    // Get the value of the input field
+    var task = document.getElementById('todo-txt').value.trim();
+
+    // Check if the input is not empty
+    if (task === '') {
+        alert('Please enter a task.');
+        return;
+    }
+
+    // Create a new div element for the task
+    var taskItem = document.createElement('div');
+    taskItem.className = 'task-item ' + getTaskClass(task); // Apply specific class
+
+    // Create a span for the task text
+    var taskText = document.createElement('span');
+    taskText.innerText = task;
+
+    // Create Edit button
+    var editButton = document.createElement('button');
+    editButton.innerText = 'Edit';
+    editButton.className = 'edit-btn';
+    editButton.onclick = function() {
+        edit_task(taskText);
+    };
+
+    // Create Delete button
+    var deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.className = 'delete-btn';
+    deleteButton.onclick = function() {
+        delete_task(taskItem);
+    };
+
+    // Append the text, edit button, and delete button to the task div
+    taskItem.appendChild(taskText);
+    taskItem.appendChild(editButton);
+    taskItem.appendChild(deleteButton);
+
+    // Add the new task to the task list
+    document.getElementById('task-list1').appendChild(taskItem);
+
+    // Clear the input field
+    document.getElementById('todo-txt').value = '';
+}
+
+// Function to categorize the task based on its content
+function getTaskClass(task) {
+    if (task.toLowerCase().includes('urgent')) {
+        return 'task-urgent'; // Urgent task
+    } else if (task.toLowerCase().includes('completed')) {
+        return 'task-completed'; // Completed task
+    } else {
+        return 'task-normal'; // Normal task
+    }
+}
+
+// Function to delete a task
+function delete_task(taskItem) {
+    taskItem.remove(); // Removes the task item from the list
+}
+
+// Function to edit a task
+function edit_task(taskText) {
+    // Create an input field to edit the task
+    var newTask = prompt('Edit your task:', taskText.innerText);
+    if (newTask !== null && newTask.trim() !== '') {
+        taskText.innerText = newTask.trim(); // Update the task text
+    }
+}
+
+    </script>
+    
+    <style>
+    /* Basic styling for the input and button */
+.Userinput-task {
+    width: 50%;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.task-list {
+    width: 50%;
+    height: 300px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+    color: black;
+    overflow-y: auto;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+/* Styling for each task based on its category */
+.task-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.task-urgent {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.task-completed {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.task-normal {
+    background-color: #e2e3e5;
+    border: 1px solid #ced4da;
+    color: #383d41;
+}
+/* Edit and Delete Button Styles */
+.edit-btn, .delete-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+    
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Add some spacing between task text and buttons */
+.task-item span {
+    margin-right: 20px;
+}
+
+
+    </style>
+    
+</head>
+<body>
+    <center>
+        <h1>To-do List Application</h1>
+        <div>
+            <input type="text" name="todo" class="Userinput-task" id="todo-txt" placeholder="Enter your task here">
+            <button type="button" class="submit-btn" onclick="submit_task()">Submit</button>
+        </div>
+        <div id="task-list1" class="task-list"></div>
+    </center>
+</body>
+</html>
